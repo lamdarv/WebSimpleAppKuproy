@@ -7,8 +7,8 @@
 3. Run this :
 ### `npm run dev`
 
-4. Backend Server :
+4. Backend Port :
 ### `http://localhost:5000`
 
-5. Frontend Server :
+5. Frontend Port :
 ### `http://localhost:3000`
