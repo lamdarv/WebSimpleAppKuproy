@@ -33,6 +33,7 @@ const Form = () => {
                 className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
                 id="title"
                 type="text"
+                maxLength="10"
                 placeholder="Input title here..."
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -46,6 +47,7 @@ const Form = () => {
                 className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
                 id="location"
                 type="text"
+                maxLength="25"
                 placeholder="Bandung, Jawa Barat"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
@@ -59,6 +61,7 @@ const Form = () => {
                 className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
                 id="description"
                 placeholder="Describe here..."
+                maxLength="40"
                 rows="6"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}

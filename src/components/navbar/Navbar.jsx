@@ -1,4 +1,17 @@
+import { useState } from 'react';
+
 export default function Navbar() {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseOverSearch = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeaveSearch = () => {
+    setIsHovered(false);
+  };
+
+
   return (
     
     <nav className="flex items-center justify-between">
@@ -30,7 +43,15 @@ export default function Navbar() {
             type="text" 
             placeholder="          Search..." 
             className="font-montserrat font-regular px-2 py-1 rounded-40 bg-white-100 border border-black text-white mr-40"  
+            onMouseOver={handleMouseOverSearch}
+            onMouseLeave={handleMouseLeaveSearch}
         />
+        {isHovered && (
+          <div className="absolute left-0 top-10 text-rose-700 font-montserrat text-xs items-center flex">
+            <img src={`${process.env.PUBLIC_URL}/assets/warning_icon.svg`} alt="warning_icon" className="pr-3" />
+            This feature is not available now!
+          </div>
+        )}
         <img 
             src={`${process.env.PUBLIC_URL}/assets/search_icon.svg`} 
             alt="Search_icon" 
