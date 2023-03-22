@@ -12,6 +12,7 @@ module.exports = {
         'custom-red-1':'#D94343',
         'custom-white-1':'#F4F4F4',
         'custom-green-2':'#07543D',
+        'custom-orange-1':'#F36B30',
       },
       colors: {
         'custom-gray-2': '#58625A',

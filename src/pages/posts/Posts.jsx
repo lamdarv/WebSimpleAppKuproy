@@ -9,61 +9,38 @@ import { useParams } from "react-router-dom";
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
-
-    // const [show, setShow] = useState(false);
-    // const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
-    const [modalOn, setModalOn] = useState(false);
-    const [choice, setChoice] = useState(false);
-    const { id } = useParams();
-
-    const modalClicked = () => {
-        setModalOn(true)
-    }
+    const [showModal, setShowModal] = useState(false)
+    const handleOnClose = () => setShowModal(false)
+    const [postId, setPostId] = useState(null);
 
     useEffect(() => {
         getPosts();
     }, []);
 
-    const rows = [];
-    for (let i = 0; i < posts.length; i += 2) {
-        rows.push(posts.slice(i, i + 2));
-    }
-
     const getPosts = async () => {
         const response = await axios.get("http://localhost:5000/api/post");
         setPosts(response.data);
     };
-
-    const getPostById = async () => {
-        const response = await axios.get(`http://localhost:5000/api/post/${id}`);
-        setPosts(response.data);
-    };
-
-    const handleDeleteConfirmation = async (id) => {
+    
+    const deletePost = async (id) => {
         try {
         await axios.delete(`http://localhost:5000/api/post/${id}`);
-        getPostById();
+        getPosts();
         } catch (error) {
         console.log(error);
         }
     };
 
-    const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:5000/api/post/${id}`);
-            setPosts(posts.filter(post => post._id !== id));
-        } catch (error) {
-            console.log(error);
-        }
-    };
-    
-    const handleDeleteClick = (id) => {
-        setChoice(true);
-        modalClicked();
-        setModalOn(false);
-        handleDeleteConfirmation(id);
-    };
+    const handleDeletePost = async (id) => {
+        await deletePost(id);
+        setPostId(null);
+        getPosts();
+    }
+
+    const rows = [];
+    for (let i = 0; i < posts.length; i += 2) {
+        rows.push(posts.slice(i, i + 2));
+    }
 
   return (
     <div>
@@ -89,23 +66,22 @@ const Posts = () => {
                                 </Link>
                             </li>
                             <li className="ml-6 rounded-40 bg-custom-red-1 items-center w-28"> 
-                                <Link onClick={handleDeleteConfirmation} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">    
+                                <Link className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">    
                                     <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" className="pr-3 w-7 h-7" />
-                                    Delete
+                                    <button onClick={() => setShowModal(true)} >
+                                        Delete
+                                    </button>
                                 </Link>
-                    
                             </li>
                             </ul>
                         </div>
+                        <Modal visible={showModal} onClose={handleOnClose} postId={post._id} handleDeletePost={handleDeletePost} />
+
                     </div>
                 ))}
                 </div>
             ))}
         </div>
-        
-                    {choice}
-        {/* {choice && handleDeleteConfirmation(post.id)} */}
-        {modalOn && <Modal setModalOn={setModalOn} setChoice={setChoice} />}
         <Bottom />
     </div>
   )
