@@ -77,7 +77,7 @@ export default function Navbar() {
       <div className="flex items-center">
         <img src={`${process.env.PUBLIC_URL}/assets/logo_kuproy.svg`} alt="Logo" className="h-12  mr-10" />
         <ul className="flex ">
-        <li className={`ml-10 mr-10 rounded-40 ${isClickedHome ? 'bg-custom-orange-1 text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} items-center`}>  
+        <li className={`ml-10 mr-10 rounded-40 ${isClickedHome ? 'bg-custom-orange-1 text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} hover:drop-shadow-xl items-center`}>  
           <a href="/" id="home" onMouseOver={handleMouseOverHome} onMouseLeave={handleMouseLeaveHome} onClick={handleClickHome} className="font-quicksand font-medium  hover:text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center "> 
           <img 
               src={`${isClickedHome ? process.env.PUBLIC_URL+'/assets/home_icon_active.svg' : (isHoveredHome ? process.env.PUBLIC_URL+'/assets/home_icon_active.svg' : process.env.PUBLIC_URL+'/assets/home_icon.svg')}`} 
@@ -88,7 +88,7 @@ export default function Navbar() {
             </a>
           </li>
 
-          <li className={`ml-10 mr-10 rounded-40 ${isClickedPosts ? 'bg-custom-orange-1 text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} items-center`}>
+          <li className={`ml-10 mr-10 rounded-40 ${isClickedPosts ? 'bg-custom-orange-1 text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} hover:drop-shadow-xl items-center`}>
             <a href="/posts" onMouseOver={handleMouseOverPosts} onMouseLeave={handleMouseLeavePosts} onClick={handleClickPosts} className="font-quicksand font-medium hover:text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center "> 
             <img 
               src={`${isClickedPosts ? process.env.PUBLIC_URL+'/assets/posts_icon_active.svg' : (isHoveredPosts ? process.env.PUBLIC_URL+'/assets/posts_icon_active.svg' : process.env.PUBLIC_URL+'/assets/posts_icon.svg')}`} 
@@ -98,7 +98,7 @@ export default function Navbar() {
             </a>
           </li>
 
-          <li className={`ml-10 mr-10 rounded-40 ${isClickedCreate ? 'bg-custom-orange-1 text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} items-center`}>
+          <li className={`ml-10 mr-10 rounded-40 ${isClickedCreate ? 'bg-custom-orange-1 text-white' : 'bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1'} hover:drop-shadow-xl items-center`}>
           <a href="/create-post" onMouseOver={handleMouseOverCreate} onMouseLeave={handleMouseLeaveCreate} onClick={handleClickCreate} className="font-quicksand font-medium hover:text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center "> 
             <img 
               src={`${isClickedCreate ? process.env.PUBLIC_URL+'/assets/create_icon_active.svg' : (isHoveredCreate ? process.env.PUBLIC_URL+'/assets/create_icon_active.svg' : process.env.PUBLIC_URL+'/assets/create_icon.svg')}`} 

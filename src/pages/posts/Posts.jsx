@@ -59,15 +59,15 @@ const Posts = () => {
                             {post.description}
                             </p>
                             <ul className="flex items-center mt-6 justify-center">
-                            <li className="rounded-40 bg-custom-green-1 items-center w-28">
+                            <li className="rounded-40 bg-custom-green-1 hover:drop-shadow-xl items-center w-28">
                                 <Link to={`/update/${post._id}`} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">    
                                     <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" className="pr-3 w-7 h-7" />
                                     Edit
                                 </Link>
                             </li>
-                            <li className="ml-6 rounded-40 bg-custom-red-1 items-center w-28"> 
+                            <li className="ml-6 rounded-40 bg-custom-red-1 hover:drop-shadow-xl items-center w-28"> 
                                 <Link className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">    
-                                    <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" className="pr-3 w-7 h-7" />
+                                    <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" onClick={() => setShowModal(true)} className="pr-3 w-7 h-7" />
                                     <button onClick={() => setShowModal(true)} >
                                         Delete
                                     </button>
