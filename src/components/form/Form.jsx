@@ -39,6 +39,7 @@ const Form = () => {
                 placeholder="Input title here..."
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                required="true"
                 />
                 <p className="text-gray-500 text-sm ml-1 mt-0">Maximal Character : 10</p>
             </div>
@@ -54,6 +55,7 @@ const Form = () => {
                 placeholder="Bandung, Jawa Barat"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
+                required="true"
                 />
                 <p className="text-gray-500 text-sm ml-1 mt-0">Maximal Character : 25</p>
             </div>
@@ -69,15 +71,16 @@ const Form = () => {
                 rows="4"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                required="true"
                 />
                 <p className="text-gray-500 text-sm ml-1 mt-0">Maximal Character : 40</p>
             </div>
             <div className="flex items-center justify-end">
                 <button
-                className="font-quicksand bg-custom-green-1  hover:drop-shadow-xl text-white font-bold py-1 px-7 rounded-40 focus:outline-none focus:shadow-outline"
+                className="font-quicksand bg-custom-green-1 hover:drop-shadow-xl text-white font-bold py-1 px-7 rounded-40 focus:outline-none focus:shadow-outline"
                 type="submit"
                 >
-                  <a href="/posts">Post</a>
+                 Post
                 </button>
             </div>
             </form>
