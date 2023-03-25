@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Bottom from '../bottom/Bottom';
+import { Form as FormBoots, Button } from "react-bootstrap";
 
 const Form = () => {
     const [title, setTitle] = useState("");
@@ -24,70 +25,61 @@ const Form = () => {
       };
   
     return (
-    <div className="flex items-center justify-center mt-10">
-        <div className="bg-white rounded-lg shadow-md p-6 max-w-w1 w-full">
-            <form onSubmit={handleSubmit} className="w-full">
-            <div className="mb-6">
-                <label className="font-quicksand block font-semibold text-black mb-2" htmlFor="title">
-                Title
-                </label>
-                <input
-                className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none"
-                id="title"
+      <div className="container mt-5 max-w-w1">
+        <div className="bg-white-100 rounded-3 shadow p-6 m-5">
+          <FormBoots onSubmit={handleSubmit}>
+            <FormBoots.Group controlId="formBasicTitle" className="ms-5 me-5 pt-5">
+              <FormBoots.Label className="font-quicksand fw-medium fs-5">Title</FormBoots.Label>
+              <FormBoots.Control
+                className="font-montserrat fw-normal fs-6"
                 type="text"
-                maxLength="10"
                 placeholder="Input title here..."
+                maxLength="10"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required="true"
-                />
-                <p className="text-gray-500 text-sm ml-1 mt-0">Maximal Character : 10</p>
-            </div>
-            <div className="mb-6">
-                <label className="font-quicksand block font-semibold text-black mb-2" htmlFor="location">
-                Location
-                </label>
-                <input
-                className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none"
-                id="location"
+              />
+              <FormBoots.Text className="text-muted ml-1 mt-0" muted>Maximal Character : 10</FormBoots.Text>
+            </FormBoots.Group>
+
+            <FormBoots.Group controlId="formBasicLocation" className="ms-5 me-5 pt-2">
+              <FormBoots.Label className="font-quicksand fw-medium fs-5">Location</FormBoots.Label>
+              <FormBoots.Control
+                className="font-montserrat fw-normal fs-6"
                 type="text"
                 maxLength="25"
                 placeholder="Bandung, Jawa Barat"
                 value={location}
-                onChange={(e) => setLocation(e.target.value)}
                 required="true"
-                />
-                <p className="text-gray-500 text-sm ml-1 mt-0">Maximal Character : 25</p>
-            </div>
-            <div className="mb-6">
-                <label className="font-quicksand block font-semibold text-black mb-2" htmlFor="description">
-                Description
-                </label>
-                <textarea
-                className="rounded-lg text-sm font-montserrat block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-1 leading-tight focus:outline-none"
-                id="description"
-                placeholder="Describe here..."
+                onChange={(e) => setLocation(e.target.value)}
+              />
+              <FormBoots.Text className="text-muted ml-1 mt-0" muted>Maximal Character : 25</FormBoots.Text>
+            </FormBoots.Group>
+
+            <FormBoots.Group controlId="formBasicDescription" className="ms-5 me-5 pt-2 pb-4">
+              <FormBoots.Label className="font-quicksand fw-medium fs-5">Description</FormBoots.Label>
+              <FormBoots.Control
+                className="font-montserrat fw-normal fs-6"
+                as="textarea"
+                rows={6}
                 maxLength="40"
-                rows="4"
+                placeholder="Describe here..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required="true"
-                />
-                <p className="text-gray-500 text-sm ml-1 mt-0">Maximal Character : 40</p>
+              />
+              <FormBoots.Text className="text-muted ml-1 mt-0" muted>Maximal Character : 40</FormBoots.Text>
+            </FormBoots.Group>
+
+            <div className="d-flex justify-content-end">
+              <Button className="bg-success text-white rounded-pill d-flex align-items-center justify-content-center me-5 px-4 ml-auto mb-3" type="submit">
+                Create
+              </Button>
             </div>
-            <div className="flex items-center justify-end">
-                <button
-                className="font-quicksand bg-custom-green-1 hover:drop-shadow-xl text-white font-bold py-1 px-7 rounded-40 focus:outline-none focus:shadow-outline"
-                type="submit"
-                >
-                 Post
-                </button>
-            </div>
-            </form>
+          </FormBoots>
         </div>
-        
-    </div>
-    
+        <Bottom />
+      </div>
   )
 }
 

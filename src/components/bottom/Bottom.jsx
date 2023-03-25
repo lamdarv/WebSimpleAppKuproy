@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Nav } from 'react-bootstrap';
 
 const Bottom = () => {
   return (
-    <nav className="mt-10 p-6 bg-white"></nav>
-  )
+    <Nav className="mt-5 mb-5 bg-white h-100"></Nav>
+  );
 }
 
-export default Bottom
+export default Bottom;

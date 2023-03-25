@@ -1,16 +1,16 @@
 import axios from 'axios';
+import { Link, Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import CustomModal from '../../components/modal/CustomModal';
 import Topbar from '../../components/topbar/Topbar';
 import Navbar from '../../components/navbar/Navbar';
 import Bottom from '../../components/bottom/Bottom';
-import { Link, Navigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
-import Modal from '../../components/modal/Modal';
-import { useParams } from "react-router-dom";
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
-    const [showModal, setShowModal] = useState(false)
-    const handleOnClose = () => setShowModal(false)
+    const [showModal, setShowModal] = useState(false);
     const [postId, setPostId] = useState(null);
 
     useEffect(() => {
@@ -40,7 +40,6 @@ const Posts = () => {
         } catch (error) {
             console.log(error);
         }
-        
     }
 
     const rows = [];
@@ -49,46 +48,41 @@ const Posts = () => {
     }
 
   return (
-    <div>
+    <>
         <Topbar />
         <Navbar />
-        <div className="md:container md:mx-auto ">
-        {rows.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex items-center justify-center">
-            {row.map(post => (
-                <div key={post._id} className="flex justify-center items-center ">
-                <div className="mr-6 ml-6 mt-10 p-6 bg-white rounded-lg shadow-md">
-                    <h2 className="max-h-56 text-xl font-quicksand mb-4 font-semibold">{post.title}</h2>
-                    <p className="text-13 font-montserrat font-light ">{post.location}</p>
-                    <p className="font-montserrat font-regular text-black leading-relaxed w-96 break-words">
-                    {post.description}
-                    </p>
-                    <ul className="flex items-center mt-6 justify-center">
-                    <li className="rounded-40 bg-custom-green-1 hover:drop-shadow-xl items-center w-28">
-                        <Link to={`/update/${post._id}`} className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center ">    
-                        <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" className="pr-3 w-7 h-7" />
-                        Edit
-                        </Link>
-                    </li>
-                    <li className="ml-6 rounded-40 bg-custom-red-1 hover:drop-shadow-xl items-center w-28"> 
-                        <Link className="font-quicksand font-medium text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center " onClick={() => setShowModal(post._id)}>
-                        <img src={`${process.env.PUBLIC_URL}/assets/trash_icon.svg`} alt="Delete_icon" className="pr-3 w-7 h-7" />
-                        Delete
-                        </Link>
-                    </li>
-                    </ul>
-                </div>
-                {showModal === post._id && (
-                    <Modal visible={true} onClose={() => setShowModal(null)} postId={post._id} handleDeletePost={handleDeletePost} />
-                )}
-                </div>
+        <Container className='rounded'>
+            {rows.map((row, rowIndex) => (
+                <Row key={rowIndex} className="justify-content-center">
+                    {row.map(post => (
+                        <Col key={post._id} md={6}>
+                            <Card className="shadow border-0 mt-5">
+                                <Card.Body className="">
+                                    <Card.Title className='font-quicksand fw-semibold text-xl'>{post.title}</Card.Title>
+                                    <Card.Text className='font-montserrat fw-normal text-13'>{post.location}</Card.Text>
+                                    <Card.Text className='font-montserrat fw-medium'>{post.description}</Card.Text>
+                                    <div className="d-flex justify-content-center">
+                                        <Button variant="success" as={Link} to={`/update/${post._id}`} className="bg-success text-white rounded-pill d-flex align-items-center justify-content-center me-3 px-4 ">
+                                            <img src={`${process.env.PUBLIC_URL}/assets/edit_icon.svg`} alt="Edit_icon" className="icon me-2" />
+                                            Edit
+                                        </Button>
+                                        <Button variant="danger" onClick={() => setShowModal(post._id)} className="text-white bg-danger rounded-pill d-flex align-items-center justify-content-center px-3">
+                                            <img src={`${process.env.PUBLIC_URL}/assets/trash_icon.svg`} alt="Delete_icon" className="icon me-2" />
+                                            Delete
+                                        </Button>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                            {showModal === post._id && (
+                                <CustomModal visible={true} onClose={() => setShowModal(null)} postId={post._id} handleDeletePost={handleDeletePost} />
+                            )}
+                        </Col>
+                    ))}
+                </Row>
             ))}
-            </div>
-        ))}
-        </div>
-
+        </Container>
         <Bottom />
-    </div>
+    </>
   )
 }
 

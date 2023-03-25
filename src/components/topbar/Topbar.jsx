@@ -1,13 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { Navbar, Image } from 'react-bootstrap';
 
 const Topbar = () => {
   return (
-    <nav className="flex items-center justify-between p-6 bg-custom-gray-1">
-      <div className="flex items-center">
-        <img src={`${process.env.PUBLIC_URL}/assets/icon_aesthetic.svg`} alt="Icon" />
-      </div>
-    </nav>
-  )
-}
+    <Navbar bg="light" variant="light" className="px-4 py-3">
+      <Navbar.Brand>
+        <Image src={`${process.env.PUBLIC_URL}/assets/icon_aesthetic.svg`} alt="Icon" />
+      </Navbar.Brand>
+    </Navbar>
+  );
+};
 
-export default Topbar
+export default Topbar;
